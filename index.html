@@ -1,0 +1,1589 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f4f5ef" />
+    <meta
+      name="description"
+      content="Soumya Ankireddypalli is a frontend-focused software engineer building responsive, thoughtful web experiences with React."
+    />
+    <title>Soumya Ankireddypalli — Frontend Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: light;
+        --paper: #f4f5ef;
+        --ink: #1b211d;
+        --muted: #626a62;
+        --line: #d8ddd4;
+        --green: #c9f36a;
+        --orange: #f27a5e;
+        --accent-ink: #1b211d;
+        --hero-heading: var(--ink);
+        --hero-highlight: var(--green);
+        --blue: #4c63cb;
+        --white: #fff;
+        --surface: #fff;
+        --surface-soft: #e8efe2;
+        --header-bg: rgb(244 245 239 / 92%);
+        --header-line: rgb(216 221 212 / 80%);
+        --footer-bg: #1b211d;
+        --footer-text: #f4f5ef;
+        --mono: "DM Mono", monospace;
+        --sans: "Manrope", sans-serif;
+      }
+      :root[data-theme="dark"] {
+        color-scheme: dark;
+        --paper: #151b17;
+        --ink: #edf2e8;
+        --muted: #abb6ac;
+        --line: #38443a;
+        --hero-heading: #fff;
+        --hero-highlight: #40552c;
+        --white: #1d261f;
+        --surface: #202a22;
+        --surface-soft: #29372c;
+        --header-bg: rgb(21 27 23 / 92%);
+        --header-line: rgb(56 68 58 / 85%);
+        --footer-bg: #0c110e;
+        --footer-text: #edf2e8;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 90px;
+      }
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: var(--sans);
+        -webkit-font-smoothing: antialiased;
+      }
+      a {
+        color: inherit;
+      }
+      a:focus-visible,
+      button:focus-visible {
+        outline: 3px solid var(--blue);
+        outline-offset: 4px;
+      }
+      .shell {
+        width: min(1160px, calc(100% - 56px));
+        margin: 0 auto;
+      }
+      .mono {
+        font-family: var(--mono);
+        text-transform: uppercase;
+        letter-spacing: 0;
+      }
+      .site-header {
+        position: sticky;
+        z-index: 10;
+        top: 0;
+        background: var(--header-bg);
+        border-bottom: 1px solid var(--header-line);
+        backdrop-filter: blur(14px);
+      }
+      .nav {
+        min-height: 76px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 11px;
+        text-decoration: none;
+        font-weight: 800;
+        font-size: 14px;
+      }
+      .brand-mark {
+        display: grid;
+        place-items: center;
+        width: 36px;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background: var(--green);
+        color: var(--accent-ink);
+        font-family: var(--mono);
+        font-size: 12px;
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 34px;
+      }
+      .nav-links a {
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 700;
+        text-decoration: none;
+        transition: color 160ms ease;
+      }
+      .nav-links a:hover {
+        color: var(--ink);
+      }
+      .nav-links .nav-contact {
+        padding: 11px 16px;
+        border: 1px solid var(--ink);
+        border-radius: 3px;
+        color: var(--ink);
+      }
+      .nav-links .nav-contact:hover {
+        background: var(--ink);
+        color: var(--white);
+      }
+      .nav-tools {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .theme-toggle {
+        min-height: 40px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 0 12px;
+        border: 1px solid var(--line);
+        border-radius: 3px;
+        background: transparent;
+        color: var(--ink);
+        font: 10px var(--mono);
+        cursor: pointer;
+        transition:
+          background 160ms ease,
+          border-color 160ms ease;
+      }
+      .theme-toggle:hover {
+        border-color: var(--ink);
+        background: var(--green);
+        color: var(--accent-ink);
+      }
+      .theme-icon {
+        font: 17px/1 var(--sans);
+      }
+      .menu-toggle {
+        display: none;
+        width: 42px;
+        height: 42px;
+        border: 1px solid var(--line);
+        border-radius: 3px;
+        background: transparent;
+        color: var(--ink);
+        font: 20px var(--sans);
+        cursor: pointer;
+      }
+      .hero {
+        min-height: 610px;
+        padding: 86px 0 76px;
+        display: grid;
+        grid-template-columns: 1fr 0.91fr;
+        align-items: center;
+        gap: 55px;
+      }
+      @media (max-width: 800px) {
+        .nav {
+          gap: 16px;
+        }
+        .nav-links {
+          gap: 18px;
+        }
+      }
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--muted);
+        font: 11px var(--mono);
+      }
+      .eyebrow::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #76a837;
+      }
+      h1 {
+        max-width: 650px;
+        margin: 25px 0 22px;
+        color: var(--hero-heading);
+        font-size: clamp(48px, 6.2vw, 82px);
+        line-height: 0.99;
+        letter-spacing: 0;
+        font-weight: 700;
+      }
+      h1 span {
+        position: relative;
+        display: inline-block;
+        z-index: 0;
+        white-space: nowrap;
+        color: var(--hero-heading);
+      }
+      h1 span::after {
+        position: absolute;
+        z-index: -1;
+        right: -5px;
+        bottom: 4px;
+        left: -5px;
+        height: 0.36em;
+        content: "";
+        background: var(--hero-highlight);
+        transform: rotate(-1.5deg);
+      }
+      .hero-copy {
+        max-width: 505px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.85;
+      }
+      .hero-copy strong {
+        color: var(--ink);
+        font-weight: 700;
+      }
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px;
+        margin-top: 29px;
+      }
+      .button {
+        min-height: 48px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 13px;
+        padding: 0 18px;
+        border: 1px solid var(--ink);
+        border-radius: 3px;
+        background: var(--ink);
+        color: var(--white);
+        font-size: 12px;
+        font-weight: 800;
+        text-decoration: none;
+        transition:
+          transform 160ms ease,
+          background 160ms ease;
+      }
+      .button:hover {
+        transform: translateY(-2px);
+        background: #343d36;
+      }
+      .button.secondary {
+        background: transparent;
+        color: var(--ink);
+      }
+      .button.secondary:hover {
+        background: var(--green);
+        color: var(--accent-ink);
+      }
+      .button-arrow {
+        font-size: 17px;
+        line-height: 1;
+      }
+      .hero-meta {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin-top: 39px;
+        color: var(--muted);
+        font: 10px var(--mono);
+      }
+      .hero-meta span + span {
+        padding-left: 20px;
+        border-left: 1px solid var(--line);
+      }
+      .hero-art {
+        position: relative;
+        min-height: 410px;
+        display: grid;
+        place-items: center;
+        isolation: isolate;
+      }
+      .art-grid {
+        position: absolute;
+        z-index: -2;
+        inset: 11px 0 5px 28px;
+        background-image: radial-gradient(#bdc4b7 0.8px, transparent 0.8px);
+        background-size: 17px 17px;
+        mask-image: linear-gradient(120deg, #000 35%, transparent 92%);
+      }
+      .art-note {
+        position: absolute;
+        z-index: 2;
+        top: 24px;
+        right: 4px;
+        padding: 10px 12px;
+        background: var(--green);
+        color: var(--accent-ink);
+        font: 10px var(--mono);
+        transform: rotate(3deg);
+      }
+      .browser-card {
+        width: min(100%, 420px);
+        padding: 0;
+        border: 1px solid var(--line);
+        border-radius: 5px;
+        overflow: hidden;
+        background: var(--surface);
+        box-shadow: 15px 17px 0 #202820;
+        transform: rotate(-2deg);
+        animation: settle 700ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+      }
+      .browser-bar {
+        height: 26px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        border-bottom: 1px solid var(--line);
+      }
+      .browser-bar i {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--line);
+      }
+      .browser-bar i:first-child {
+        background: var(--orange);
+      }
+      .portrait-panel {
+        position: relative;
+        height: 350px;
+        overflow: hidden;
+        background: var(--surface-soft);
+      }
+      .portrait-feature {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 32%;
+      }
+      .portrait-overlay {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+        padding: 58px 22px 21px;
+        background: linear-gradient(180deg, transparent, rgb(12 17 14 / 84%));
+        color: #fff;
+      }
+      .portrait-overlay span {
+        font: 9px var(--mono);
+        text-transform: uppercase;
+      }
+      .portrait-overlay strong {
+        max-width: 290px;
+        font-size: clamp(24px, 3vw, 34px);
+        line-height: 1.08;
+      }
+      .browser-address {
+        width: 38%;
+        height: 12px;
+        margin: 0 auto;
+        border-radius: 2px;
+        background: var(--surface-soft);
+      }
+      .store-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 17px 5px 14px;
+      }
+      .store-logo {
+        font-size: 13px;
+        font-weight: 800;
+      }
+      .store-nav {
+        display: flex;
+        gap: 11px;
+        color: var(--muted);
+        font: 7px var(--mono);
+      }
+      .store-banner {
+        min-height: 165px;
+        display: grid;
+        grid-template-columns: 1fr 0.8fr;
+        align-items: center;
+        overflow: hidden;
+        padding: 18px;
+        background: var(--surface-soft);
+      }
+      .store-banner small {
+        color: var(--muted);
+        font: 8px var(--mono);
+        text-transform: uppercase;
+      }
+      .store-banner h2 {
+        max-width: 180px;
+        margin: 9px 0 12px;
+        font-size: 20px;
+        line-height: 1.08;
+      }
+      .store-banner .mini-cta {
+        display: inline-block;
+        padding: 7px 9px;
+        background: var(--ink);
+        color: white;
+        font-size: 7px;
+        font-weight: 700;
+      }
+      .banner-photo {
+        width: 100%;
+        height: 132px;
+        object-fit: cover;
+        object-position: 50% 37%;
+        mix-blend-mode: multiply;
+      }
+      .store-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 5px 9px;
+      }
+      .store-row strong {
+        font-size: 9px;
+      }
+      .store-row span {
+        color: var(--muted);
+        font: 7px var(--mono);
+      }
+      .product-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 9px;
+      }
+      .product {
+        min-width: 0;
+      }
+      .product img {
+        width: 100%;
+        aspect-ratio: 1.35;
+        display: block;
+        object-fit: cover;
+        background: var(--surface-soft);
+      }
+      .product b,
+      .product small {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .product b {
+        margin-top: 6px;
+        font-size: 7px;
+      }
+      .product small {
+        margin-top: 3px;
+        color: var(--muted);
+        font: 7px var(--mono);
+      }
+      .orbit-stamp {
+        position: absolute;
+        right: -4px;
+        bottom: 8px;
+        width: 82px;
+        aspect-ratio: 1;
+        display: grid;
+        place-items: center;
+        border: 1px solid var(--ink);
+        border-radius: 50%;
+        background: var(--orange);
+        color: var(--accent-ink);
+        font: 9px/1.5 var(--mono);
+        text-align: center;
+        transform: rotate(9deg);
+      }
+      .ticker {
+        overflow: hidden;
+        border-top: 1px solid var(--ink);
+        border-bottom: 1px solid var(--ink);
+        background: var(--green);
+        color: var(--accent-ink);
+      }
+      .ticker-track {
+        width: max-content;
+        display: flex;
+        align-items: center;
+        gap: 26px;
+        padding: 14px 0;
+        animation: ticker 28s linear infinite;
+        font: 10px var(--mono);
+      }
+      .ticker-track span {
+        display: inline-flex;
+        align-items: center;
+        gap: 26px;
+      }
+      .ticker-track span::after {
+        content: "✳";
+        font-size: 14px;
+      }
+      .section {
+        padding: 104px 0;
+      }
+      .section-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 24px;
+        margin-bottom: 38px;
+      }
+      .section-label {
+        margin: 0 0 13px;
+        color: var(--muted);
+        font: 10px var(--mono);
+      }
+      .section h2 {
+        margin: 0;
+        font-size: clamp(35px, 4.4vw, 52px);
+        line-height: 1.06;
+        font-weight: 700;
+      }
+      .section-intro {
+        max-width: 350px;
+        margin: 0 0 4px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.8;
+      }
+      .project-list {
+        display: grid;
+        gap: 20px;
+      }
+      .project-card {
+        display: grid;
+        grid-template-columns: 1.04fr 0.96fr;
+        min-height: 355px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        background: var(--surface);
+      }
+      .project-card.reverse {
+        grid-template-columns: 0.96fr 1.04fr;
+      }
+      .project-card.reverse .project-visual {
+        order: 2;
+      }
+      .project-visual {
+        position: relative;
+        min-height: 300px;
+        overflow: hidden;
+        background: var(--surface-soft);
+      }
+      .project-card:nth-child(2) .project-visual {
+        background: var(--surface-soft);
+      }
+      .visual-caption {
+        position: absolute;
+        z-index: 2;
+        top: 18px;
+        left: 18px;
+        padding: 8px 10px;
+        background: var(--white);
+        font: 9px var(--mono);
+      }
+      .corp-visual {
+        position: absolute;
+        inset: 50px 36px 26px;
+        display: grid;
+        grid-template-columns: 0.7fr 1fr;
+        gap: 10px;
+      }
+      .corp-copy {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: start;
+      }
+      .corp-copy small {
+        color: var(--muted);
+        font: 8px var(--mono);
+      }
+      .corp-copy strong {
+        max-width: 190px;
+        margin: 10px 0 14px;
+        font-size: clamp(19px, 2.3vw, 30px);
+        line-height: 1.06;
+      }
+      .corp-copy span {
+        padding: 8px 10px;
+        background: var(--ink);
+        color: var(--white);
+        font-size: 8px;
+        font-weight: 700;
+      }
+      .corp-images {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 8px;
+      }
+      .corp-images img {
+        width: 100%;
+        height: 100%;
+        min-height: 0;
+        object-fit: cover;
+      }
+      .corp-images img:first-child {
+        grid-row: span 2;
+      }
+      .coffee-visual {
+        position: absolute;
+        inset: 0;
+      }
+      .coffee-visual img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 54%;
+      }
+      .coffee-overlay {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: rgb(26 30 25 / 24%);
+        color: white;
+        text-align: center;
+      }
+      .coffee-overlay small {
+        font: 9px var(--mono);
+      }
+      .coffee-overlay strong {
+        margin: 12px 0;
+        font-size: clamp(24px, 3vw, 39px);
+        line-height: 1;
+      }
+      .coffee-overlay span {
+        padding: 8px 11px;
+        border: 1px solid white;
+        font-size: 8px;
+        font-weight: 700;
+      }
+      .project-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: clamp(24px, 4vw, 54px);
+      }
+      .project-index {
+        color: var(--muted);
+        font: 10px var(--mono);
+      }
+      .project-info h3 {
+        margin: 12px 0 11px;
+        font-size: 27px;
+        line-height: 1.15;
+      }
+      .project-info p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.8;
+      }
+      .project-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+        margin: 20px 0 22px;
+      }
+      .project-tags span {
+        padding: 6px 8px;
+        border: 1px solid var(--line);
+        border-radius: 2px;
+        color: var(--muted);
+        font: 9px var(--mono);
+      }
+      .project-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px 20px;
+      }
+      .project-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        width: fit-content;
+        font-size: 11px;
+        font-weight: 800;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 4px;
+      }
+      .project-link span {
+        font-size: 16px;
+        transition: transform 150ms ease;
+      }
+      .project-link:hover span {
+        transform: translate(3px, -3px);
+      }
+      .experience {
+        display: grid;
+        grid-template-columns: 0.75fr 1.25fr;
+        gap: 80px;
+        padding: 83px 0;
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+      .experience h2 {
+        max-width: 340px;
+        margin: 0;
+        font-size: 43px;
+        line-height: 1.08;
+      }
+      .experience-kicker {
+        margin: 15px 0 0;
+        color: var(--muted);
+        font: 10px var(--mono);
+      }
+      .role {
+        padding: 0 0 30px 24px;
+        border-left: 1px solid #bbc4b8;
+      }
+      .role + .role {
+        padding-top: 27px;
+        border-top: 1px solid var(--line);
+      }
+      .role-top {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 20px;
+      }
+      .role h3 {
+        margin: 0;
+        font-size: 19px;
+      }
+      .role time {
+        flex: 0 0 auto;
+        color: var(--muted);
+        font: 9px var(--mono);
+      }
+      .role-place {
+        margin: 6px 0 17px;
+        color: var(--muted);
+        font-size: 11px;
+      }
+      .role ul {
+        display: grid;
+        gap: 9px;
+        margin: 0;
+        padding-left: 17px;
+        color: #535d54;
+        font-size: 11px;
+        line-height: 1.75;
+      }
+      .toolkit {
+        padding: 104px 0;
+      }
+      .toolkit-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1px;
+        border: 1px solid var(--line);
+        background: var(--line);
+      }
+      .toolkit-group {
+        min-height: 150px;
+        padding: 22px;
+        background: var(--paper);
+      }
+      .toolkit-group h3 {
+        margin: 0 0 19px;
+        color: var(--muted);
+        font: 10px var(--mono);
+        text-transform: uppercase;
+      }
+      .toolkit-group p {
+        margin: 0;
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 1.9;
+      }
+      .education {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        margin-top: 48px;
+        padding: 24px 0;
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+      .education-label {
+        margin: 0 0 8px;
+        color: var(--muted);
+        font: 10px var(--mono);
+      }
+      .education strong {
+        font-size: 14px;
+      }
+      .education p {
+        margin: 6px 0 0;
+        color: var(--muted);
+        font-size: 11px;
+      }
+      .education-score {
+        padding: 10px 13px;
+        background: var(--green);
+        color: var(--accent-ink);
+        font: 10px var(--mono);
+        white-space: nowrap;
+      }
+      .contact {
+        padding: 84px 0 72px;
+        background: var(--footer-bg);
+        color: var(--footer-text);
+      }
+      .contact-inner {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: end;
+        gap: 40px;
+      }
+      .contact .section-label {
+        color: #b1b9b0;
+      }
+      .contact h2 {
+        max-width: 650px;
+        margin: 0;
+        font-size: clamp(40px, 6vw, 70px);
+        line-height: 1;
+      }
+      .contact h2 span {
+        color: var(--green);
+      }
+      .contact-copy {
+        max-width: 420px;
+        margin: 18px 0 0;
+        color: #b1b9b0;
+        font-size: 12px;
+        line-height: 1.8;
+      }
+      .contact-links {
+        display: grid;
+        gap: 11px;
+        min-width: 220px;
+      }
+      .contact-links a {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 10px 0;
+        border-bottom: 1px solid var(--line);
+        color: var(--footer-text);
+        font-size: 11px;
+        text-decoration: none;
+      }
+      .contact-links a:hover {
+        color: var(--green);
+      }
+      .contact-links span {
+        color: var(--green);
+      }
+      footer {
+        padding: 18px 0;
+        background: var(--footer-bg);
+        color: var(--muted);
+        border-top: 1px solid var(--line);
+      }
+      .footer-inner {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        font: 9px var(--mono);
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(16px);
+        transition:
+          opacity 550ms ease,
+          transform 550ms ease;
+      }
+      .reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      @keyframes settle {
+        from {
+          opacity: 0;
+          transform: translateY(12px) rotate(1deg);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) rotate(-2deg);
+        }
+      }
+      @keyframes ticker {
+        to {
+          transform: translateX(-50%);
+        }
+      }
+      @media (max-width: 800px) {
+        .shell {
+          width: min(100% - 40px, 620px);
+        }
+        .hero {
+          min-height: 0;
+          padding: 72px 0 64px;
+          grid-template-columns: 1fr;
+          gap: 29px;
+        }
+        .hero-art {
+          min-height: 375px;
+        }
+        .browser-card {
+          width: min(100%, 420px);
+        }
+        .section {
+          padding: 78px 0;
+        }
+        .experience {
+          grid-template-columns: 1fr;
+          gap: 40px;
+          padding: 67px 0;
+        }
+        .experience h2 {
+          max-width: none;
+        }
+        .toolkit {
+          padding: 78px 0;
+        }
+        .toolkit-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .contact-inner {
+          grid-template-columns: 1fr;
+          align-items: start;
+          gap: 35px;
+        }
+        .contact-links {
+          width: min(100%, 400px);
+        }
+      }
+      @media (max-width: 560px) {
+        .shell {
+          width: calc(100% - 36px);
+        }
+        .nav {
+          min-height: 66px;
+        }
+        .menu-toggle {
+          display: grid;
+          place-items: center;
+        }
+        .nav-links {
+          position: absolute;
+          top: 65px;
+          right: 0;
+          left: 0;
+          display: none;
+          align-items: stretch;
+          gap: 0;
+          padding: 8px 18px 17px;
+          border-bottom: 1px solid var(--line);
+          background: var(--paper);
+        }
+        .nav-links.is-open {
+          display: flex;
+          flex-direction: column;
+        }
+        .nav-links a {
+          padding: 13px 4px;
+        }
+        .nav-links .nav-contact {
+          margin-top: 6px;
+          padding: 12px;
+          text-align: center;
+        }
+        .theme-toggle {
+          width: 42px;
+          min-height: 42px;
+          padding: 0;
+        }
+        .theme-label {
+          position: absolute;
+          width: 1px;
+          height: 1px;
+          overflow: hidden;
+          clip: rect(0, 0, 0, 0);
+          white-space: nowrap;
+        }
+        .hero {
+          padding: 59px 0 46px;
+          gap: 22px;
+        }
+        .profile-photo {
+          width: 84px;
+          height: 84px;
+        }
+        h1 {
+          margin: 20px 0 17px;
+          font-size: clamp(45px, 13vw, 65px);
+        }
+        .hero-copy {
+          font-size: 13px;
+        }
+        .hero-meta {
+          gap: 11px;
+          margin-top: 26px;
+          font-size: 8px;
+        }
+        .hero-meta span + span {
+          padding-left: 11px;
+        }
+        .hero-art {
+          min-height: 320px;
+          margin: 0 -2px;
+        }
+        .browser-card {
+          padding: 10px;
+          box-shadow: 9px 11px 0 #202820;
+        }
+        .store-banner {
+          min-height: 135px;
+          padding: 12px;
+        }
+        .store-banner h2 {
+          max-width: 145px;
+          font-size: 17px;
+        }
+        .banner-photo {
+          height: 110px;
+        }
+        .store-nav {
+          gap: 6px;
+          font-size: 6px;
+        }
+        .art-note {
+          top: 4px;
+          right: 0;
+        }
+        .orbit-stamp {
+          right: -3px;
+          bottom: -2px;
+          width: 65px;
+          font-size: 8px;
+        }
+        .section {
+          padding: 63px 0;
+        }
+        .section-head {
+          align-items: start;
+          flex-direction: column;
+          gap: 13px;
+          margin-bottom: 25px;
+        }
+        .section-intro {
+          font-size: 12px;
+        }
+        .project-card,
+        .project-card.reverse {
+          grid-template-columns: 1fr;
+        }
+        .project-card.reverse .project-visual {
+          order: 0;
+        }
+        .project-visual {
+          min-height: 230px;
+        }
+        .corp-visual {
+          inset: 42px 22px 20px;
+        }
+        .corp-copy strong {
+          font-size: 22px;
+        }
+        .project-info {
+          padding: 24px;
+        }
+        .project-info h3 {
+          font-size: 23px;
+        }
+        .experience {
+          padding: 60px 0;
+        }
+        .experience h2 {
+          font-size: 37px;
+        }
+        .role {
+          padding-left: 16px;
+        }
+        .role-top {
+          align-items: start;
+          flex-direction: column;
+          gap: 7px;
+        }
+        .toolkit {
+          padding: 64px 0;
+        }
+        .toolkit-group {
+          min-height: 135px;
+          padding: 16px;
+        }
+        .toolkit-group p {
+          font-size: 11px;
+        }
+        .education {
+          align-items: start;
+        }
+        .education strong {
+          font-size: 12px;
+        }
+        .education-score {
+          padding: 8px;
+          font-size: 8px;
+        }
+        .contact {
+          padding: 67px 0 56px;
+        }
+        .contact h2 {
+          font-size: 46px;
+        }
+        .footer-inner {
+          flex-direction: column;
+          gap: 8px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+        .reveal {
+          opacity: 1;
+          transform: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav shell" aria-label="Main navigation">
+        <a class="brand" href="#top" aria-label="Soumya Ankireddypalli, home"
+          ><span class="brand-mark">SA</span
+          ><span>Soumya Ankireddypalli</span></a
+        >
+        <div class="nav-links" id="nav-links">
+          <a href="#work">Selected work</a><a href="#experience">Experience</a
+          ><a href="#toolkit">Toolkit</a
+          ><a class="nav-contact" href="#contact"
+            >Let’s talk <span aria-hidden="true">↗</span></a
+          >
+        </div>
+        <div class="nav-tools">
+          <button
+            class="theme-toggle"
+            type="button"
+            aria-label="Switch to dark theme"
+            title="Switch to dark theme"
+          >
+            <span class="theme-icon" aria-hidden="true">☾</span>
+            <span class="theme-label">Dark</span>
+          </button>
+          <button
+            class="menu-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="nav-links"
+            aria-label="Open navigation"
+          >
+            +
+          </button>
+        </div>
+      </nav>
+    </header>
+    <main id="top">
+      <section class="hero shell" aria-labelledby="hero-title">
+        <div class="hero-content">
+          <span class="eyebrow">Frontend engineer · Bengaluru, India</span>
+          <h1 id="hero-title">I make the web feel <span>effortless.</span></h1>
+          <p class="hero-copy">
+            I’m <strong>Soumya</strong>, a frontend-focused software engineer
+            who turns ideas into responsive, useful experiences. I bring a
+            product mindset to React development and a production engineer’s
+            instinct for solving what’s underneath.
+          </p>
+          <div class="hero-actions">
+            <a class="button" href="#work"
+              >Explore my work
+              <span class="button-arrow" aria-hidden="true">↓</span></a
+            ><a
+              class="button secondary"
+              href="Soumya_Ankireddypalli_FlowCV_Resume_2026-09-29.pdf"
+              target="_blank"
+              rel="noopener"
+              >View résumé
+              <span class="button-arrow" aria-hidden="true">↗</span></a
+            >
+          </div>
+          <div class="hero-meta">
+            <span>React · JavaScript</span><span>Building for real people</span>
+          </div>
+        </div>
+        <div class="hero-art">
+          <div class="art-grid" aria-hidden="true"></div>
+          <div class="art-note">FRONTEND · REACT · BENGALURU</div>
+          <div class="browser-card">
+            <div class="browser-bar" aria-hidden="true">
+              <i></i><i></i><i></i>
+              <div class="browser-address"></div>
+            </div>
+            <div class="portrait-panel">
+              <img
+                class="portrait-feature"
+                src="profile_picture.jpg"
+                alt="Portrait of Soumya Ankireddypalli"
+              />
+              <div class="portrait-overlay">
+                <span>Frontend engineer · React</span>
+                <strong>Building thoughtful web experiences.</strong>
+              </div>
+            </div>
+          </div>
+          <div class="orbit-stamp">DESIGN<br />MEETS CODE<br />✳</div>
+        </div>
+      </section>
+      <div
+        class="ticker"
+        aria-label="React, responsive interfaces, thoughtful details, and good user experiences"
+      >
+        <div class="ticker-track" aria-hidden="true">
+          <span>React interfaces</span><span>Responsive by default</span
+          ><span>Thoughtful details</span><span>Built to be useful</span
+          ><span>React interfaces</span><span>Responsive by default</span
+          ><span>Thoughtful details</span><span>Built to be useful</span>
+        </div>
+      </div>
+      <section class="section shell" id="work" aria-labelledby="work-title">
+        <div class="section-head reveal">
+          <div>
+            <p class="section-label">01 / Selected work</p>
+            <h2 id="work-title">Things I’ve<br />put into the world.</h2>
+          </div>
+          <p class="section-intro">
+            A couple of projects where I got to bring responsive layouts,
+            practical interactions, and the details in between together.
+          </p>
+        </div>
+        <div class="project-list">
+          <article class="project-card reveal">
+            <div class="project-visual">
+              <span class="visual-caption">01 — PRODUCT EXPERIENCE</span>
+              <div class="corp-visual">
+                <div class="corp-copy">
+                  <small>THE COMPANY STORE</small
+                  ><strong>Gear up for the good stuff.</strong
+                  ><span>EXPLORE PRODUCTS ↗</span>
+                </div>
+                <div class="corp-images">
+                  <img
+                    src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=520&q=80"
+                    alt="Backpack from a merchandise collection"
+                  /><img
+                    src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=400&q=80"
+                    alt="T-shirt from a merchandise collection"
+                  /><img
+                    src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=400&q=80"
+                    alt="Watch from a merchandise collection"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="project-info">
+              <span class="project-index">REACT · E-COMMERCE</span>
+              <h3>CorpCart</h3>
+              <p>
+                A complete corporate merchandise storefront, from product
+                discovery to checkout. Built reusable UI and connected the
+                moments that make shopping feel seamless: search, filters,
+                wishlist, cart, and login-gated checkout.
+              </p>
+              <div class="project-tags">
+                <span>React</span><span>Context API</span
+                ><span>React Router</span><span>Vite</span><span>Swiper</span>
+              </div>
+              <div class="project-actions">
+                <a
+                  class="project-link"
+                  href="https://github.com/soumya738/CorpCart"
+                  target="_blank"
+                  rel="noopener"
+                  >GitHub repository <span aria-hidden="true">↗</span></a
+                >
+                <a
+                  class="project-link"
+                  href="https://soumyas.vercel.app/"
+                  target="_blank"
+                  rel="noopener"
+                  >Live demo <span aria-hidden="true">↗</span></a
+                >
+              </div>
+            </div>
+          </article>
+          <article class="project-card reverse reveal">
+            <div class="project-visual">
+              <span class="visual-caption">02 — RESPONSIVE INTERFACE</span>
+              <div class="coffee-visual">
+                <img
+                  src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1100&q=85"
+                  alt="Freshly brewed coffee on a cafe table"
+                />
+                <div class="coffee-overlay">
+                  <small>GOOD THINGS ARE BREWING</small
+                  ><strong>A little moment<br />for yourself.</strong
+                  ><span>FIND YOUR FAVORITE</span>
+                </div>
+              </div>
+            </div>
+            <div class="project-info">
+              <span class="project-index">HTML · CSS · JAVASCRIPT</span>
+              <h3>Starbucks Responsive UI Clone</h3>
+              <p>
+                A responsive Starbucks-inspired web experience with clear
+                navigation, promotional storytelling, and adaptable layouts. A
+                focused exercise in semantic structure and making familiar
+                design patterns work at every screen size.
+              </p>
+              <div class="project-tags">
+                <span>HTML5</span><span>CSS3</span><span>JavaScript</span
+                ><span>Responsive design</span>
+              </div>
+              <div class="project-actions">
+                <a
+                  class="project-link"
+                  href="https://github.com/soumya738/Starbucksclone"
+                  target="_blank"
+                  rel="noopener"
+                  >GitHub repository <span aria-hidden="true">↗</span></a
+                >
+                <a
+                  class="project-link"
+                  href="https://soumya-starbucks.vercel.app/"
+                  target="_blank"
+                  rel="noopener"
+                  >Live demo <span aria-hidden="true">↗</span></a
+                >
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+      <section
+        class="experience shell"
+        id="experience"
+        aria-labelledby="experience-title"
+      >
+        <div class="reveal">
+          <p class="section-label">02 / The path here</p>
+          <h2 id="experience-title">Production taught me to look closer.</h2>
+          <p class="experience-kicker">ENGINEERING · SUPPORT · SYSTEMS</p>
+        </div>
+        <div class="role reveal">
+          <div class="role-top">
+            <h3>Software Engineer</h3>
+            <time datetime="2024-12">DEC 2024 — SEP 2026</time>
+          </div>
+          <p class="role-place">Capgemini · Bengaluru, India</p>
+          <ul>
+            <li>
+              Investigate production issues across application logs, background
+              processes, system health, and database behavior to identify root
+              causes and restore services.
+            </li>
+            <li>
+              Support releases, upgrades, patching, configuration changes, and
+              production deployments across development, QA, and production
+              environments.
+            </li>
+            <li>
+              Partner across teams to validate fixes, document resolutions, and
+              keep business-critical systems reliable within operational SLAs.
+            </li>
+            <li>
+              Apply structured debugging across application, database,
+              authentication, and infrastructure layers.
+            </li>
+          </ul>
+        </div>
+      </section>
+      <section
+        class="toolkit shell"
+        id="toolkit"
+        aria-labelledby="toolkit-title"
+      >
+        <div class="section-head reveal">
+          <div>
+            <p class="section-label">03 / My toolkit</p>
+            <h2 id="toolkit-title">
+              The right tool<br />for the right detail.
+            </h2>
+          </div>
+          <p class="section-intro">
+            A frontend-first skill set, with the debugging and systems context
+            to see the bigger picture.
+          </p>
+        </div>
+        <div class="toolkit-grid reveal">
+          <div class="toolkit-group">
+            <h3>Frontend</h3>
+            <p>React.js<br />JavaScript (ES6+)<br />HTML5 · CSS3</p>
+          </div>
+          <div class="toolkit-group">
+            <h3>React & UI</h3>
+            <p>React Router<br />Context API<br />Component architecture</p>
+          </div>
+          <div class="toolkit-group">
+            <h3>Build & test</h3>
+            <p>Vite · Git · GitHub<br />Postman<br />Chrome DevTools</p>
+          </div>
+          <div class="toolkit-group">
+            <h3>Foundations</h3>
+            <p>Java · SQL<br />REST APIs<br />Accessibility · performance</p>
+          </div>
+        </div>
+        <div class="education reveal">
+          <div>
+            <p class="education-label">EDUCATION</p>
+            <strong>B.Tech, Information Technology</strong>
+            <p>Sastra University · 2020 — 2024</p>
+          </div>
+          <span class="education-score">CGPA &nbsp; 8.7</span>
+        </div>
+      </section>
+      <section class="contact" id="contact" aria-labelledby="contact-title">
+        <div class="contact-inner shell">
+          <div class="reveal">
+            <p class="section-label">04 / Start a conversation</p>
+            <h2 id="contact-title">
+              Good work starts<br />with <span>hello.</span>
+            </h2>
+            <p class="contact-copy">
+              I’m open to frontend opportunities and conversations about
+              building useful, thoughtful web experiences.
+            </p>
+          </div>
+          <div class="contact-links reveal">
+            <a href="mailto:sunsowmya24@gmail.com"
+              >Email me <span aria-hidden="true">↗</span></a
+            ><a href="tel:+917981851170"
+              >Call me <span aria-hidden="true">↗</span></a
+            ><a
+              href="https://github.com/soumya738"
+              target="_blank"
+              rel="noopener"
+              >GitHub <span aria-hidden="true">↗</span></a
+            ><a
+              href="Soumya_Ankireddypalli_FlowCV_Resume_2026-09-29.pdf"
+              target="_blank"
+              rel="noopener"
+              >Résumé PDF <span aria-hidden="true">↗</span></a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div class="footer-inner shell">
+        <span>© <span id="year">2026</span> Soumya Ankireddypalli</span
+        ><span>MADE WITH CARE · BENGALURU, INDIA</span>
+      </div>
+    </footer>
+    <script>
+      const menuButton = document.querySelector(".menu-toggle");
+      const navLinks = document.querySelector(".nav-links");
+      const themeButton = document.querySelector(".theme-toggle");
+      const themeIcon = themeButton.querySelector(".theme-icon");
+      const themeLabel = themeButton.querySelector(".theme-label");
+      const themeColor = document.querySelector('meta[name="theme-color"]');
+
+      function applyTheme(theme, save = true) {
+        const isDark = theme === "dark";
+        document.documentElement.dataset.theme = theme;
+        themeButton.setAttribute(
+          "aria-label",
+          `Switch to ${isDark ? "light" : "dark"} theme`,
+        );
+        themeButton.title = `Switch to ${isDark ? "light" : "dark"} theme`;
+        themeIcon.textContent = isDark ? "☀" : "☾";
+        themeLabel.textContent = isDark ? "Light" : "Dark";
+        themeColor.content = isDark ? "#151b17" : "#f4f5ef";
+        if (save) {
+          try {
+            localStorage.setItem("soumya-portfolio-theme", theme);
+          } catch {}
+        }
+      }
+
+      let savedTheme = "light";
+      try {
+        savedTheme = localStorage.getItem("soumya-portfolio-theme") || "light";
+      } catch {}
+      applyTheme(savedTheme, false);
+
+      themeButton.addEventListener("click", () => {
+        applyTheme(
+          document.documentElement.dataset.theme === "dark" ? "light" : "dark",
+        );
+      });
+
+      menuButton.addEventListener("click", () => {
+        const isOpen = menuButton.getAttribute("aria-expanded") === "true";
+        menuButton.setAttribute("aria-expanded", String(!isOpen));
+        menuButton.setAttribute(
+          "aria-label",
+          isOpen ? "Open navigation" : "Close navigation",
+        );
+        menuButton.textContent = isOpen ? "+" : "×";
+        navLinks.classList.toggle("is-open", !isOpen);
+      });
+      navLinks.addEventListener("click", (event) => {
+        if (event.target.closest("a")) {
+          navLinks.classList.remove("is-open");
+          menuButton.setAttribute("aria-expanded", "false");
+          menuButton.setAttribute("aria-label", "Open navigation");
+          menuButton.textContent = "+";
+        }
+      });
+      document.querySelector("#year").textContent = new Date().getFullYear();
+      const revealObserver = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12 },
+      );
+      document
+        .querySelectorAll(".reveal")
+        .forEach((element) => revealObserver.observe(element));
+    </script>
+  </body>
+</html>
